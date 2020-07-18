@@ -11,6 +11,10 @@ combineTuple(relay1, relay2, relay3)
     }.addTo(disposables)
 ```
 
+## Why?
+
+It's useful when you want to combine multiple reactive streams together and get a combined object of the latest values, without defining an actual class with an actual name to do it.
+
 ## Using RxCombineTuple-KT
 
 In order to use RxCombineTuple-KT, you need to add `jitpack` to your project root `build.gradle.kts`
