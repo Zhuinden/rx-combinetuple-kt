@@ -21,20 +21,20 @@ import io.reactivex.Observable
 import io.reactivex.functions.*
 import io.reactivex.functions.Function
 
-fun <T1, T2> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>): Flowable<Pair<T1, T2>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>): Flowable<Pair<T1, T2>> = Flowable.combineLatest(
     f1,
     f2,
     BiFunction<T1, T2, Pair<T1, T2>> { t1, t2 -> t1 to t2 }
 )
 
-fun <T1, T2, T3> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>): Flowable<Triple<T1, T2, T3>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>): Flowable<Triple<T1, T2, T3>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
     Function3<T1, T2, T3, Triple<T1, T2, T3>> { t1, t2, t3 -> Triple(t1, t2, t3) }
 )
 
-fun <T1, T2, T3, T4> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>): Flowable<Tuple4<T1, T2, T3, T4>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>): Flowable<Tuple4<T1, T2, T3, T4>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -42,7 +42,7 @@ fun <T1, T2, T3, T4> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowab
     Function4<T1, T2, T3, T4, Tuple4<T1, T2, T3, T4>> { t1, t2, t3, t4 -> Tuple4(t1, t2, t3, t4) }
 )
 
-fun <T1, T2, T3, T4, T5> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>): Flowable<Tuple5<T1, T2, T3, T4, T5>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>): Flowable<Tuple5<T1, T2, T3, T4, T5>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -51,7 +51,7 @@ fun <T1, T2, T3, T4, T5> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Fl
     Function5<T1, T2, T3, T4, T5, Tuple5<T1, T2, T3, T4, T5>> { t1, t2, t3, t4, t5 -> Tuple5(t1, t2, t3, t4, t5) }
 )
 
-fun <T1, T2, T3, T4, T5, T6> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>): Flowable<Tuple6<T1, T2, T3, T4, T5, T6>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>): Flowable<Tuple6<T1, T2, T3, T4, T5, T6>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -61,7 +61,7 @@ fun <T1, T2, T3, T4, T5, T6> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3
     Function6<T1, T2, T3, T4, T5, T6, Tuple6<T1, T2, T3, T4, T5, T6>> { t1, t2, t3, t4, t5, t6 -> Tuple6(t1, t2, t3, t4, t5, t6) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>): Flowable<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>): Flowable<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -72,7 +72,7 @@ fun <T1, T2, T3, T4, T5, T6, T7> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>
     Function7<T1, T2, T3, T4, T5, T6, T7, Tuple7<T1, T2, T3, T4, T5, T6, T7>> { t1, t2, t3, t4, t5, t6, t7 -> Tuple7(t1, t2, t3, t4, t5, t6, t7) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>): Flowable<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>): Flowable<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -84,7 +84,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8> combineTuple(f1: Flowable<T1>, f2: Flowable
     Function8<T1, T2, T3, T4, T5, T6, T7, T8, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { t1, t2, t3, t4, t5, t6, t7, t8 -> Tuple8(t1, t2, t3, t4, t5, t6, t7, t8) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>): Flowable<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Flowable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>): Flowable<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Flowable.combineLatest(
     f1,
     f2,
     f3,
@@ -97,7 +97,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9> combineTuple(f1: Flowable<T1>, f2: Flow
     Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Tuple9(t1, t2, t3, t4, t5, t6, t7, t8, t9) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>): Flowable<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>): Flowable<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -114,7 +114,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> combineTuple(f1: Flowable<T1>, f2:
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>): Flowable<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>): Flowable<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -132,7 +132,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> combineTuple(f1: Flowable<T1>
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>): Flowable<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>): Flowable<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -151,7 +151,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combineTuple(f1: Flowabl
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>): Flowable<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>): Flowable<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -171,7 +171,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combineTuple(f1: Fl
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>): Flowable<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>): Flowable<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -192,7 +192,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combineTuple(f
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>, f15: Flowable<T15>): Flowable<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>, f15: Flowable<T15>): Flowable<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -214,7 +214,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combineTu
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>, f15: Flowable<T15>, f16: Flowable<T16>): Flowable<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Flowable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any, T16: Any> combineTuple(f1: Flowable<T1>, f2: Flowable<T2>, f3: Flowable<T3>, f4: Flowable<T4>, f5: Flowable<T5>, f6: Flowable<T6>, f7: Flowable<T7>, f8: Flowable<T8>, f9: Flowable<T9>, f10: Flowable<T10>, f11: Flowable<T11>, f12: Flowable<T12>, f13: Flowable<T13>, f14: Flowable<T14>, f15: Flowable<T15>, f16: Flowable<T16>): Flowable<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Flowable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -237,20 +237,20 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> comb
     }
 })
 
-fun <T1, T2> combineTuple(f1: Observable<T1>, f2: Observable<T2>): Observable<Pair<T1, T2>> = Observable.combineLatest(
+fun <T1: Any, T2: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>): Observable<Pair<T1, T2>> = Observable.combineLatest(
     f1,
     f2,
     BiFunction<T1, T2, Pair<T1, T2>> { t1, t2 -> t1 to t2 }
 )
 
-fun <T1, T2, T3> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>): Observable<Triple<T1, T2, T3>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>): Observable<Triple<T1, T2, T3>> = Observable.combineLatest(
     f1,
     f2,
     f3,
     Function3<T1, T2, T3, Triple<T1, T2, T3>> { t1, t2, t3 -> Triple(t1, t2, t3) }
 )
 
-fun <T1, T2, T3, T4> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>): Observable<Tuple4<T1, T2, T3, T4>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>): Observable<Tuple4<T1, T2, T3, T4>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -258,7 +258,7 @@ fun <T1, T2, T3, T4> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Ob
     Function4<T1, T2, T3, T4, Tuple4<T1, T2, T3, T4>> { t1, t2, t3, t4 -> Tuple4(t1, t2, t3, t4) }
 )
 
-fun <T1, T2, T3, T4, T5> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>): Observable<Tuple5<T1, T2, T3, T4, T5>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>): Observable<Tuple5<T1, T2, T3, T4, T5>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -267,7 +267,7 @@ fun <T1, T2, T3, T4, T5> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3
     Function5<T1, T2, T3, T4, T5, Tuple5<T1, T2, T3, T4, T5>> { t1, t2, t3, t4, t5 -> Tuple5(t1, t2, t3, t4, t5) }
 )
 
-fun <T1, T2, T3, T4, T5, T6> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>): Observable<Tuple6<T1, T2, T3, T4, T5, T6>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>): Observable<Tuple6<T1, T2, T3, T4, T5, T6>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -277,7 +277,7 @@ fun <T1, T2, T3, T4, T5, T6> combineTuple(f1: Observable<T1>, f2: Observable<T2>
     Function6<T1, T2, T3, T4, T5, T6, Tuple6<T1, T2, T3, T4, T5, T6>> { t1, t2, t3, t4, t5, t6 -> Tuple6(t1, t2, t3, t4, t5, t6) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>): Observable<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>): Observable<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -288,7 +288,7 @@ fun <T1, T2, T3, T4, T5, T6, T7> combineTuple(f1: Observable<T1>, f2: Observable
     Function7<T1, T2, T3, T4, T5, T6, T7, Tuple7<T1, T2, T3, T4, T5, T6, T7>> { t1, t2, t3, t4, t5, t6, t7 -> Tuple7(t1, t2, t3, t4, t5, t6, t7) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>): Observable<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>): Observable<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -300,7 +300,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8> combineTuple(f1: Observable<T1>, f2: Observ
     Function8<T1, T2, T3, T4, T5, T6, T7, T8, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { t1, t2, t3, t4, t5, t6, t7, t8 -> Tuple8(t1, t2, t3, t4, t5, t6, t7, t8) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>): Observable<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Observable.combineLatest(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>): Observable<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Observable.combineLatest(
     f1,
     f2,
     f3,
@@ -313,7 +313,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9> combineTuple(f1: Observable<T1>, f2: Ob
     Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Tuple9(t1, t2, t3, t4, t5, t6, t7, t8, t9) }
 )
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>): Observable<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>): Observable<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -330,7 +330,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> combineTuple(f1: Observable<T1>, f
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>): Observable<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>): Observable<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -348,7 +348,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> combineTuple(f1: Observable<T
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>): Observable<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>): Observable<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -367,7 +367,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> combineTuple(f1: Observa
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>): Observable<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>): Observable<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -387,7 +387,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> combineTuple(f1: Ob
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>): Observable<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>): Observable<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -408,7 +408,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> combineTuple(f
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>, f15: Observable<T15>): Observable<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>, f15: Observable<T15>): Observable<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,
@@ -430,7 +430,7 @@ fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> combineTu
     }
 })
 
-fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>, f15: Observable<T15>, f16: Observable<T16>): Observable<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Observable.combineLatest(arrayOf(
+fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any, T16: Any> combineTuple(f1: Observable<T1>, f2: Observable<T2>, f3: Observable<T3>, f4: Observable<T4>, f5: Observable<T5>, f6: Observable<T6>, f7: Observable<T7>, f8: Observable<T8>, f9: Observable<T9>, f10: Observable<T10>, f11: Observable<T11>, f12: Observable<T12>, f13: Observable<T13>, f14: Observable<T14>, f15: Observable<T15>, f16: Observable<T16>): Observable<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Observable.combineLatest(arrayOf(
     f1,
     f2,
     f3,

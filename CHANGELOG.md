@@ -5,6 +5,8 @@
 
 - Make into pure-JVM library to enable compatibility with non-Android projects.
 
+- Restrict input types to match `@NonNull` of Rx's types (fix warnings).
+
 -Rx-CombineTuple-KT 1.1.0 (2020-03-29)
 --------------------------------
 
