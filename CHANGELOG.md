@@ -1,5 +1,10 @@
 # Change log
 
+-Rx-CombineTuple-KT 1.2.0 (2020-12-19)
+--------------------------------
+
+- Make into pure-JVM library to enable compatibility with non-Android projects.
+
 -Rx-CombineTuple-KT 1.1.0 (2020-03-29)
 --------------------------------
 
