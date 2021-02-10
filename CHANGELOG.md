@@ -1,5 +1,10 @@
 # Change log
 
+-Rx-CombineTuple-KT 1.2.1 (2021-02-10)
+--------------------------------
+
+- Fix a distribution issue causing the kotlin META-INF/*.kotlin_module to be called build.kotlin_module
+
 -Rx-CombineTuple-KT 1.2.0 (2020-12-19)
 --------------------------------
 

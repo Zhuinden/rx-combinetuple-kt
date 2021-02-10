@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.github.Zhuinden:tuples-kt:1.1.0'
+    api 'com.github.Zhuinden:tuples-kt:1.1.1'
     api 'io.reactivex.rxjava2:rxjava:2.2.20'
 }
 
@@ -48,7 +48,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.github.Zhuinden'
             artifactId = 'rx-combinetuple-kt'
-            version = '1.2.0'
+            version = '1.2.1'
 
             from components.java
             artifact sourcesJar
@@ -65,10 +65,14 @@ compileKotlin {
     kotlinOptions {
         jvmTarget = "1.6"
     }
+    
+    kotlinOptions.moduleName = "com.zhuinden.rxcombinetuplekt"
 }
 
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.6"
     }
+    
+    kotlinOptions.moduleName = "com.zhuinden.rxcombinetuplekt"
 }
