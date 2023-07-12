@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Gabor Varadi
+ * Copyright 2020-2023 Gabor Varadi
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,21 +18,29 @@ package com.zhuinden.rxcombinetuplekt
 import com.zhuinden.tupleskt.*
 import io.reactivex.Single
 import io.reactivex.functions.*
+import io.reactivex.functions.Function
 
-fun <T1: Any, T2: Any> zipTuple(f1: Single<T1>, f2: Single<T2>): Single<Pair<T1, T2>> = Single.zip(
+fun <T1: Any> zipTuple(f1: Single<T1>): Single<Tuple1<T1>> = f1.map(::Tuple1)
+
+fun <T1 : Any, T2 : Any> zipTuple(f1: Single<T1>, f2: Single<T2>): Single<Pair<T1, T2>> = Single.zip(
     f1,
     f2,
     BiFunction<T1, T2, Pair<T1, T2>> { t1, t2 -> t1 to t2 }
 )
 
-fun <T1: Any, T2: Any, T3: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>): Single<Triple<T1, T2, T3>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>): Single<Triple<T1, T2, T3>> = Single.zip(
     f1,
     f2,
     f3,
     Function3<T1, T2, T3, Triple<T1, T2, T3>> { t1, t2, t3 -> Triple(t1, t2, t3) }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>): Single<Tuple4<T1, T2, T3, T4>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>
+): Single<Tuple4<T1, T2, T3, T4>> = Single.zip(
     f1,
     f2,
     f3,
@@ -40,7 +48,13 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any> zipTuple(f1: Single<T1>, f2: Single<T2>
     Function4<T1, T2, T3, T4, Tuple4<T1, T2, T3, T4>> { t1, t2, t3, t4 -> Tuple4(t1, t2, t3, t4) }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>): Single<Tuple5<T1, T2, T3, T4, T5>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>
+): Single<Tuple5<T1, T2, T3, T4, T5>> = Single.zip(
     f1,
     f2,
     f3,
@@ -49,7 +63,14 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any> zipTuple(f1: Single<T1>, f2: S
     Function5<T1, T2, T3, T4, T5, Tuple5<T1, T2, T3, T4, T5>> { t1, t2, t3, t4, t5 -> Tuple5(t1, t2, t3, t4, t5) }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>): Single<Tuple6<T1, T2, T3, T4, T5, T6>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>
+): Single<Tuple6<T1, T2, T3, T4, T5, T6>> = Single.zip(
     f1,
     f2,
     f3,
@@ -59,7 +80,15 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any> zipTuple(f1: Single<T
     Function6<T1, T2, T3, T4, T5, T6, Tuple6<T1, T2, T3, T4, T5, T6>> { t1, t2, t3, t4, t5, t6 -> Tuple6(t1, t2, t3, t4, t5, t6) }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>): Single<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>
+): Single<Tuple7<T1, T2, T3, T4, T5, T6, T7>> = Single.zip(
     f1,
     f2,
     f3,
@@ -67,10 +96,29 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any> zipTuple(f1:
     f5,
     f6,
     f7,
-    Function7<T1, T2, T3, T4, T5, T6, T7, Tuple7<T1, T2, T3, T4, T5, T6, T7>> { t1, t2, t3, t4, t5, t6, t7 -> Tuple7(t1, t2, t3, t4, t5, t6, t7) }
+    Function7<T1, T2, T3, T4, T5, T6, T7, Tuple7<T1, T2, T3, T4, T5, T6, T7>> { t1, t2, t3, t4, t5, t6, t7 ->
+        Tuple7(
+            t1,
+            t2,
+            t3,
+            t4,
+            t5,
+            t6,
+            t7
+        )
+    }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>): Single<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>
+): Single<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> = Single.zip(
     f1,
     f2,
     f3,
@@ -79,10 +127,31 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any> zip
     f6,
     f7,
     f8,
-    Function8<T1, T2, T3, T4, T5, T6, T7, T8, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { t1, t2, t3, t4, t5, t6, t7, t8 -> Tuple8(t1, t2, t3, t4, t5, t6, t7, t8) }
+    Function8<T1, T2, T3, T4, T5, T6, T7, T8, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { t1, t2, t3, t4, t5, t6, t7, t8 ->
+        Tuple8(
+            t1,
+            t2,
+            t3,
+            t4,
+            t5,
+            t6,
+            t7,
+            t8
+        )
+    }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>): Single<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Single.zip(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>
+): Single<Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> = Single.zip(
     f1,
     f2,
     f3,
@@ -92,29 +161,77 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f7,
     f8,
     f9,
-    Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { t1, t2, t3, t4, t5, t6, t7, t8, t9 -> Tuple9(t1, t2, t3, t4, t5, t6, t7, t8, t9) }
+    Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { t1, t2, t3, t4, t5, t6, t7, t8, t9 ->
+        Tuple9(
+            t1,
+            t2,
+            t3,
+            t4,
+            t5,
+            t6,
+            t7,
+            t8,
+            t9
+        )
+    }
 )
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>): Single<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>
+): Single<Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> = Single.zipArray(
     Function<Array<*>, Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> { t ->
         @Suppress("UNCHECKED_CAST")
         Tuple10(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10)
-    }, 
-    f1, 
-    f2, 
-    f3, 
-    f4, 
-    f5, 
-    f6, 
-    f7, 
-    f8, 
-    f9, 
-    f10)
+    },
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10
+)
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>): Single<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>
+): Single<Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> = Single.zipArray(
     Function<Array<*>, Tuple11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple11(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11)
+        Tuple11(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11
+        )
     },
     f1,
     f2,
@@ -126,13 +243,40 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f8,
     f9,
     f10,
-    f11)
+    f11
+)
 
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>, f12: Single<T12>): Single<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>
+): Single<Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> = Single.zipArray(
     Function<Array<*>, Tuple12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple12(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11, t[11] as T12)
+        Tuple12(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11,
+            t[11] as T12
+        )
     },
     f1,
     f2,
@@ -145,12 +289,41 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f9,
     f10,
     f11,
-    f12)
-                                                                                                                                                                                                                                                        
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>, f12: Single<T12>, f13: Single<T13>): Single<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Single.zipArray(
+    f12
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>
+): Single<Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> = Single.zipArray(
     Function<Array<*>, Tuple13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple13(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11, t[11] as T12, t[12] as T13)
+        Tuple13(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11,
+            t[11] as T12,
+            t[12] as T13
+        )
     },
     f1,
     f2,
@@ -164,12 +337,43 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f10,
     f11,
     f12,
-    f13)
+    f13
+)
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>, f12: Single<T12>, f13: Single<T13>, f14: Single<T14>): Single<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>
+): Single<Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> = Single.zipArray(
     Function<Array<*>, Tuple14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple14(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11, t[11] as T12, t[12] as T13, t[13] as T14)
+        Tuple14(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11,
+            t[11] as T12,
+            t[12] as T13,
+            t[13] as T14
+        )
     },
     f1,
     f2,
@@ -184,12 +388,45 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f11,
     f12,
     f13,
-    f14)
+    f14
+)
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>, f12: Single<T12>, f13: Single<T13>, f14: Single<T14>, f15: Single<T15>): Single<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>
+): Single<Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> = Single.zipArray(
     Function<Array<*>, Tuple15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple15(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11, t[11] as T12, t[12] as T13, t[13] as T14, t[14] as T15)
+        Tuple15(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11,
+            t[11] as T12,
+            t[12] as T13,
+            t[13] as T14,
+            t[14] as T15
+        )
     },
     f1,
     f2,
@@ -204,13 +441,48 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f11,
     f12,
     f13,
-    f14, 
-    f15)
+    f14,
+    f15
+)
 
-fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9: Any, T10: Any, T11: Any, T12: Any, T13: Any, T14: Any, T15: Any, T16: Any> zipTuple(f1: Single<T1>, f2: Single<T2>, f3: Single<T3>, f4: Single<T4>, f5: Single<T5>, f6: Single<T6>, f7: Single<T7>, f8: Single<T8>, f9: Single<T9>, f10: Single<T10>, f11: Single<T11>, f12: Single<T12>, f13: Single<T13>, f14: Single<T14>, f15: Single<T15>, f16: Single<T16>): Single<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Single.zipArray(
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>
+): Single<Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> = Single.zipArray(
     Function<Array<*>, Tuple16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>> { t ->
         @Suppress("UNCHECKED_CAST")
-        Tuple16(t[0] as T1, t[1] as T2, t[2] as T3, t[3] as T4, t[4] as T5, t[5] as T6, t[6] as T7, t[7] as T8, t[8] as T9, t[9] as T10, t[10] as T11, t[11] as T12, t[12] as T13, t[13] as T14, t[14] as T15, t[15] as T16)
+        Tuple16(
+            t[0] as T1,
+            t[1] as T2,
+            t[2] as T3,
+            t[3] as T4,
+            t[4] as T5,
+            t[5] as T6,
+            t[6] as T7,
+            t[7] as T8,
+            t[8] as T9,
+            t[9] as T10,
+            t[10] as T11,
+            t[11] as T12,
+            t[12] as T13,
+            t[13] as T14,
+            t[14] as T15,
+            t[15] as T16
+        )
     },
     f1,
     f2,
@@ -225,6 +497,1849 @@ fun <T1: Any, T2: Any, T3: Any, T4: Any, T5: Any, T6: Any, T7: Any, T8: Any, T9:
     f11,
     f12,
     f13,
-    f14, 
+    f14,
     f15,
-    f16)
+    f16
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>
+): Single<Tuple17<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>> = Single.zipArray(
+    object : Function<Array<*>, Tuple17<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>> {
+        override fun apply(t: Array<*>): Tuple17<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17> {
+            @Suppress("UNCHECKED_CAST")
+            return Tuple17(
+                t[0] as T1,
+                t[1] as T2,
+                t[2] as T3,
+                t[3] as T4,
+                t[4] as T5,
+                t[5] as T6,
+                t[6] as T7,
+                t[7] as T8,
+                t[8] as T9,
+                t[9] as T10,
+                t[10] as T11,
+                t[11] as T12,
+                t[12] as T13,
+                t[13] as T14,
+                t[14] as T15,
+                t[15] as T16,
+                t[16] as T17
+            )
+        }
+    },
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10,
+    f11,
+    f12,
+    f13,
+    f14,
+    f15,
+    f16,
+    f17
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>
+): Single<Tuple18<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>> = Single.zipArray(
+    object : Function<Array<*>, Tuple18<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>> {
+        override fun apply(t: Array<*>): Tuple18<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18> {
+            @Suppress("UNCHECKED_CAST")
+            return Tuple18(
+                t[0] as T1,
+                t[1] as T2,
+                t[2] as T3,
+                t[3] as T4,
+                t[4] as T5,
+                t[5] as T6,
+                t[6] as T7,
+                t[7] as T8,
+                t[8] as T9,
+                t[9] as T10,
+                t[10] as T11,
+                t[11] as T12,
+                t[12] as T13,
+                t[13] as T14,
+                t[14] as T15,
+                t[15] as T16,
+                t[16] as T17,
+                t[17] as T18
+            )
+        }
+    },
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10,
+    f11,
+    f12,
+    f13,
+    f14,
+    f15,
+    f16,
+    f17,
+    f18
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>
+): Single<Tuple19<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>> = Single.zipArray(
+    object : Function<Array<*>, Tuple19<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>> {
+        override fun apply(t: Array<*>): Tuple19<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> {
+            @Suppress("UNCHECKED_CAST")
+            return Tuple19(
+                t[0] as T1,
+                t[1] as T2,
+                t[2] as T3,
+                t[3] as T4,
+                t[4] as T5,
+                t[5] as T6,
+                t[6] as T7,
+                t[7] as T8,
+                t[8] as T9,
+                t[9] as T10,
+                t[10] as T11,
+                t[11] as T12,
+                t[12] as T13,
+                t[13] as T14,
+                t[14] as T15,
+                t[15] as T16,
+                t[16] as T17,
+                t[17] as T18,
+                t[18] as T19
+            )
+        }
+    },
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10,
+    f11,
+    f12,
+    f13,
+    f14,
+    f15,
+    f16,
+    f17,
+    f18,
+    f19
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>
+): Single<Tuple20<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20>> = Single.zipArray(
+    object : Function<Array<*>, Tuple20<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20>> {
+        override fun apply(t: Array<*>): Tuple20<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20> {
+            @Suppress("UNCHECKED_CAST")
+            return Tuple20(
+                t[0] as T1,
+                t[1] as T2,
+                t[2] as T3,
+                t[3] as T4,
+                t[4] as T5,
+                t[5] as T6,
+                t[6] as T7,
+                t[7] as T8,
+                t[8] as T9,
+                t[9] as T10,
+                t[10] as T11,
+                t[11] as T12,
+                t[12] as T13,
+                t[13] as T14,
+                t[14] as T15,
+                t[15] as T16,
+                t[16] as T17,
+                t[17] as T18,
+                t[18] as T19,
+                t[19] as T20
+            )
+        }
+    },
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10,
+    f11,
+    f12,
+    f13,
+    f14,
+    f15,
+    f16,
+    f17,
+    f18,
+    f19,
+    f20
+)
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>
+): Single<Tuple21<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple21<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21>> {
+            override fun apply(t: Array<*>): Tuple21<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple21(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>
+): Single<Tuple22<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple22<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22>> {
+            override fun apply(t: Array<*>): Tuple22<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple22(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>
+): Single<Tuple23<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple23<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23>> {
+            override fun apply(t: Array<*>): Tuple23<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple23(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>
+): Single<Tuple24<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple24<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24>> {
+            override fun apply(t: Array<*>): Tuple24<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple24(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>
+): Single<Tuple25<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple25<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25>> {
+            override fun apply(t: Array<*>): Tuple25<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple25(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>
+): Single<Tuple26<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple26<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26>> {
+            override fun apply(t: Array<*>): Tuple26<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple26(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>
+): Single<Tuple27<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple27<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27>> {
+            override fun apply(t: Array<*>): Tuple27<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple27(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>
+): Single<Tuple28<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple28<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28>> {
+            override fun apply(t: Array<*>): Tuple28<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple28(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>
+): Single<Tuple29<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple29<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29>> {
+            override fun apply(t: Array<*>): Tuple29<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple29(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>
+): Single<Tuple30<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple30<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30>> {
+            override fun apply(t: Array<*>): Tuple30<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple30(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>
+): Single<Tuple31<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple31<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31>> {
+            override fun apply(t: Array<*>): Tuple31<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple31(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any, T32 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>,
+    f32: Single<T32>
+): Single<Tuple32<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple32<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32>> {
+            override fun apply(t: Array<*>): Tuple32<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple32(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31,
+                    t[31] as T32
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31,
+        f32
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any, T32 : Any, T33 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>,
+    f32: Single<T32>,
+    f33: Single<T33>
+): Single<Tuple33<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple33<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33>> {
+            override fun apply(t: Array<*>): Tuple33<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple33(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31,
+                    t[31] as T32,
+                    t[32] as T33
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31,
+        f32,
+        f33
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any, T32 : Any, T33 : Any, T34 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>,
+    f32: Single<T32>,
+    f33: Single<T33>,
+    f34: Single<T34>
+): Single<Tuple34<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple34<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34>> {
+            override fun apply(t: Array<*>): Tuple34<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple34(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31,
+                    t[31] as T32,
+                    t[32] as T33,
+                    t[33] as T34
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31,
+        f32,
+        f33,
+        f34
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any, T32 : Any, T33 : Any, T34 : Any, T35 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>,
+    f32: Single<T32>,
+    f33: Single<T33>,
+    f34: Single<T34>,
+    f35: Single<T35>
+): Single<Tuple35<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple35<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35>> {
+            override fun apply(t: Array<*>): Tuple35<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple35(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31,
+                    t[31] as T32,
+                    t[32] as T33,
+                    t[33] as T34,
+                    t[34] as T35
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31,
+        f32,
+        f33,
+        f34,
+        f35
+    )
+
+fun <T1 : Any, T2 : Any, T3 : Any, T4 : Any, T5 : Any, T6 : Any, T7 : Any, T8 : Any, T9 : Any, T10 : Any, T11 : Any, T12 : Any, T13 : Any, T14 : Any, T15 : Any, T16 : Any, T17 : Any, T18 : Any, T19 : Any, T20 : Any, T21 : Any, T22 : Any, T23 : Any, T24 : Any, T25 : Any, T26 : Any, T27 : Any, T28 : Any, T29 : Any, T30 : Any, T31 : Any, T32 : Any, T33 : Any, T34 : Any, T35 : Any, T36 : Any> zipTuple(
+    f1: Single<T1>,
+    f2: Single<T2>,
+    f3: Single<T3>,
+    f4: Single<T4>,
+    f5: Single<T5>,
+    f6: Single<T6>,
+    f7: Single<T7>,
+    f8: Single<T8>,
+    f9: Single<T9>,
+    f10: Single<T10>,
+    f11: Single<T11>,
+    f12: Single<T12>,
+    f13: Single<T13>,
+    f14: Single<T14>,
+    f15: Single<T15>,
+    f16: Single<T16>,
+    f17: Single<T17>,
+    f18: Single<T18>,
+    f19: Single<T19>,
+    f20: Single<T20>,
+    f21: Single<T21>,
+    f22: Single<T22>,
+    f23: Single<T23>,
+    f24: Single<T24>,
+    f25: Single<T25>,
+    f26: Single<T26>,
+    f27: Single<T27>,
+    f28: Single<T28>,
+    f29: Single<T29>,
+    f30: Single<T30>,
+    f31: Single<T31>,
+    f32: Single<T32>,
+    f33: Single<T33>,
+    f34: Single<T34>,
+    f35: Single<T35>,
+    f36: Single<T36>
+): Single<Tuple36<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35, T36>> =
+    Single.zipArray(
+        object :
+            Function<Array<*>, Tuple36<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35, T36>> {
+            override fun apply(t: Array<*>): Tuple36<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35, T36> {
+                @Suppress("UNCHECKED_CAST")
+                return Tuple36(
+                    t[0] as T1,
+                    t[1] as T2,
+                    t[2] as T3,
+                    t[3] as T4,
+                    t[4] as T5,
+                    t[5] as T6,
+                    t[6] as T7,
+                    t[7] as T8,
+                    t[8] as T9,
+                    t[9] as T10,
+                    t[10] as T11,
+                    t[11] as T12,
+                    t[12] as T13,
+                    t[13] as T14,
+                    t[14] as T15,
+                    t[15] as T16,
+                    t[16] as T17,
+                    t[17] as T18,
+                    t[18] as T19,
+                    t[19] as T20,
+                    t[20] as T21,
+                    t[21] as T22,
+                    t[22] as T23,
+                    t[23] as T24,
+                    t[24] as T25,
+                    t[25] as T26,
+                    t[26] as T27,
+                    t[27] as T28,
+                    t[28] as T29,
+                    t[29] as T30,
+                    t[30] as T31,
+                    t[31] as T32,
+                    t[32] as T33,
+                    t[33] as T34,
+                    t[34] as T35,
+                    t[35] as T36
+                )
+            }
+        },
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        f25,
+        f26,
+        f27,
+        f28,
+        f29,
+        f30,
+        f31,
+        f32,
+        f33,
+        f34,
+        f35,
+        f36
+    )

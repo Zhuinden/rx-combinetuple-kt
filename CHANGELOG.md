@@ -1,5 +1,12 @@
 # Change log
 
+-Rx-CombineTuple-KT 1.3.0 (2023-07-12)
+--------------------------------
+
+- Update tuples-kt to 1.2.0.
+
+- Add support of `combineTuple` and `zipTuple` for higher arity tuples.
+
 -Rx-CombineTuple-KT 1.2.1 (2021-02-10)
 --------------------------------
 
